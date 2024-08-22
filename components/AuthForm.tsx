@@ -24,6 +24,13 @@ const AuthForm = ({ type }: { type: string }) => {
     defaultValues: {
       email: "",
       password: "",
+      firstName: "",
+      lastName: "",
+      address1: "",
+      state: "",
+      postalCode: "",
+      dateOfBirth: "",
+      ssn: "",
     },
   });
 
@@ -31,9 +38,11 @@ const AuthForm = ({ type }: { type: string }) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    setIsLoading(true);
-    console.log(values.password, "EMAIL");
-    setIsLoading(false);
+    console.log("Form submitted"); // Ensure onSubmit is called
+    console.log(values);
+    // setIsLoading(true);
+    // console.log(values.password, "pw");
+    // setIsLoading(false);
   }
   return (
     <section className="auth-form">
@@ -67,7 +76,7 @@ const AuthForm = ({ type }: { type: string }) => {
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              {type === "sign-up" ? (
+              {type === "sign-up" && (
                 <>
                   <div className="flex gap-4">
                     <CustomInput
@@ -80,14 +89,20 @@ const AuthForm = ({ type }: { type: string }) => {
                       control={form.control}
                       name="lastName"
                       label="Last Name"
-                      placeholder="Enter your last name"
+                      placeholder="Enter your first name"
                     />
                   </div>
                   <CustomInput
                     control={form.control}
                     name="address1"
                     label="Address"
-                    placeholder="Enter your Address"
+                    placeholder="Enter your specific address"
+                  />
+                  <CustomInput
+                    control={form.control}
+                    name="city"
+                    label="City"
+                    placeholder="Enter your city"
                   />
                   <div className="flex gap-4">
                     <CustomInput
@@ -118,22 +133,21 @@ const AuthForm = ({ type }: { type: string }) => {
                     />
                   </div>
                 </>
-              ) : (
-                <>
-                  <CustomInput
-                    control={form.control}
-                    name="email"
-                    label="Email"
-                    placeholder="Enter your email"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="password"
-                    label="Password"
-                    placeholder="Enter your password"
-                  />
-                </>
               )}
+
+              <CustomInput
+                control={form.control}
+                name="email"
+                label="Email"
+                placeholder="Enter your email"
+              />
+
+              <CustomInput
+                control={form.control}
+                name="password"
+                label="Password"
+                placeholder="Enter your password"
+              />
 
               <div className="flex flex-col gap-4">
                 {" "}
