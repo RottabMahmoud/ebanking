@@ -11,8 +11,11 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "../lib/utils";
+import { useRouter } from "next/navigation";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,6 +30,7 @@ const AuthForm = ({ type }: { type: string }) => {
       firstName: "",
       lastName: "",
       address1: "",
+      city: "",
       state: "",
       postalCode: "",
       dateOfBirth: "",
@@ -35,15 +39,31 @@ const AuthForm = ({ type }: { type: string }) => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log("Form submitted"); // Ensure onSubmit is called
-    console.log(values);
-    // setIsLoading(true);
-    // console.log(values.password, "pw");
-    // setIsLoading(false);
-  }
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    console.log(data);
+    try {
+      // Sign Up with Appwrite & Create plaid link token
+
+      if (type === "sign-up") {
+        const newUser = await signUp(data);
+
+        setUser(newUser);
+      }
+
+      if (type === "sign-in") {
+        // const response = await signIn({
+        //   email: data.email,
+        //   password: data.password,
+        // });
+
+        // if (response) router.push("/");
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <section className="auth-form">
       <header className="flex flex-col gap-5 mg:gap-8">
