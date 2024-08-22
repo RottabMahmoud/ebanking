@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ebanking Web Platform
 
-## Getting Started
+## What the Application does
 
-First, run the development server:
+Manage your banking activity using this web platform.
+
+## Technologies
+
+- Next.js 14
+- ShadCn
+- Tailwind CSS
+- TypeScript
+- Appwrite
+
+## Some of the challenges I've faced and how I've tackled them
+
+Fetching Data from GraphQL API
+Challenge: Fetching parking lot data from a GraphQL API and handling asynchronous data loading efficiently.
+
+Solution: I utilized Apollo Client to manage GraphQL queries and data fetching. By leveraging Apollo's useQuery hook, I was able to fetch data asynchronously and update the component state accordingly. Additionally, I implemented pagination using the fetchMore function to load more parking lots as the user rated them.
+
+## Project Installation
+
+```bash
+git clone https://github.com/RottabMahmoud/wemolo-challenge
+cd wemolo-challenge
+yarn 
+```
+
+## To Start the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## For Running the Tests
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## For Building
 
-## Learn More
+```bash
+npm build
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Hierarchy
+```bash
+  wemolo-challenge    
+    ├─ public
+    │  ├─ vite.svg
+    ├─ src                   
+    │  ├─ components         
+    │  │  ├─ ParkingLotCard.tsx      
+    │  │  ├─ SummaryView.tsx
+    │  │  ├─ TinderView.tsx
+    │  ├─ graphql         
+    │  │  ├─ cleint.ts      
+    │  │  ├─ queries.ts
+    │  ├─ tests              
+    │  │  └─ ParkingLotCard.test.tsx 
+    │  │─ App.tsx
+    │  │─ index.css
+    │  │─ main.tsx
+    │  │─ vite-env.d.ts
+    ├─ .gitignore 
+    ├─ node_modules
+    ├─ package.json
+    ├─ package-lock.json
+    ├─ README.md
+    ├─ jest.config.cjs
+    ├─ jest.setup.ts
+    ├─ tsconfig.json
+    ├─ tsconfig.node.json
+    ├─ tsconfig.app.json
+    ├─ tailwind.config.js
+    ├─ postcss.config.js
+    └─ yarn.lock
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+[MIT](https://choosealicense.com/licenses/mit/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Badge
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<a href="https://rottab.vercel.app"> <img src="https://img.shields.io/badge/Mahmoud%20Rottab-Porfolio" alt="Mahmoud Rottab" /> </a>
