@@ -22,8 +22,14 @@ export const signUp = async (userData: SignUpParams) => {
       password,
       `${firstName} ${lastName}`
     );
+    // Log user account creation to confirm
+    console.log("New user account created:", newUseraccount);
+
     const session = await account.createEmailPasswordSession(email, password);
 
+    // Log session creation to confirm
+    console.log("Session created:", session);
+    
     cookies().set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
@@ -32,7 +38,6 @@ export const signUp = async (userData: SignUpParams) => {
     });
 
     return parseStringify(newUseraccount);
-
   } catch (error) {
     console.log(error);
   }
